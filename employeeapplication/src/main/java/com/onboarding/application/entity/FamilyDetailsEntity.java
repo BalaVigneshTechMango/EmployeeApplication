@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 @Table(name = "family_details")
@@ -33,6 +35,7 @@ public class FamilyDetailsEntity {
 	@Column(name = "is_family_members")
 	private boolean isFamilyMembers;
 	
+	@JsonBackReference("empid")
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = EmployeeEntity.class)
 	@JoinColumn(name = "empid")
 	private EmployeeEntity employeeEntity;

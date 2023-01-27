@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "hobbies_details")
 public class HobbiesEntity {
@@ -24,6 +26,7 @@ public class HobbiesEntity {
 	@Column(name = "hobbies_level")
 	private String  hobbiesLevel;
 	
+	@JsonBackReference("empid")
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = EmployeeEntity.class)
 	@JoinColumn(name = "empid")
 	private EmployeeEntity employeeEntity;

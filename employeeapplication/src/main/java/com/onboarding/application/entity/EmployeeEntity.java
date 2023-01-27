@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "employee")
 public class EmployeeEntity {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "empid")
@@ -85,29 +85,29 @@ public class EmployeeEntity {
 	private String skypeId;
 	@Column(name = "temp_id")
 	private String  tempId;
-	
-    
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "employeeEntity",fetch = FetchType.EAGER)
+
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "empid",referencedColumnName = "empid")
 	private BankDetailsEntity bankDetailsEntity;
 
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, targetEntity = FamilyDetailsEntity.class)
 	@JoinColumn(name = "empid",referencedColumnName = "empid")
 	private Set<FamilyDetailsEntity> familyDetailsEntities = new HashSet<>();
 
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, targetEntity = EducationEntity.class)
+	@OneToMany(targetEntity = EducationEntity.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name = "empid",referencedColumnName = "empid")
 	private Set<EducationEntity> educationEntity = new HashSet<>();
-
+    
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, targetEntity = HobbiesEntity.class)
 	@JoinColumn(name = "empid",referencedColumnName = "empid")
 	private Set<HobbiesEntity> hobbiesEntities = new HashSet<>();
-
+    
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity = PreviousEmploymentEntity.class)
 	@JoinColumn(name = "empid",referencedColumnName = "empid")
 	private Set<PreviousEmploymentEntity> previousEmploymentEntities = new HashSet<>();
 
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity = SkillEntity.class)
-	@JoinColumn(name = "empid",referencedColumnName = "empid")
+    @JoinColumn(name = "empid",referencedColumnName = "empid")
 	private Set<SkillEntity> skillEntities = new HashSet<>();
 
 	public int getEmpid() {

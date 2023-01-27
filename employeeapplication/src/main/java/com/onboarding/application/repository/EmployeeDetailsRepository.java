@@ -21,21 +21,15 @@ import com.onboarding.application.responce.ResponcePojo;
 @Repository
 public interface EmployeeDetailsRepository extends JpaRepository<EmployeeEntity, Integer> {
 	
-//	@Modifying
-//	@Transactional
-//	@Query("UPDATE EmployeeEntity e join EducationEntity q SET e.status= :status,q.qualification=:qualification where e.empid= :empid")
-//	public int updateStatuss(@Param("empid") int empid, @Param("status") String status);
-	
-//	@Modifying
-//	@Transactional
-//	@Query("UPDATE EmployeeEntity e, EducationEntity q Set e.status= :status,"
-//			+ " q.qualification= :qualification  where e.empid= q.employeeEntity.empid")
-//	public int updateStatus(int empid, @Param("status") String status);
+	@Modifying
+	@Transactional
+	@Query("UPDATE EmployeeEntity e Set e.status= :status where e.empid= :empid")
+	public int updateStatus(int empid, @Param("status") String status);
 	
 	@Query("SELECT e.empid,e.fullName,q.qualification from EmployeeEntity e join EducationEntity q on e.empid=q.employeeEntity.empid where e.empid=?1")
 	public List<Object> findByIdDetails(int empid);
 
-	@Query("Select e.empid,e.fullName,e.fatherName,e.dateOfBirth,e.spouseName,e.anniversaryDate"
+	@Query("Select e.empid,e.fullName,e.fatherName,e.dateOfBirth,e.spouseName,e.anniversaryDate,e.panNumber,e.aadhaarNo,e.designation,e.department,e.dojTts,e.monthOfExp,e.genderEmp,e.drivinglicenseNo,e.licenseExpiryDate,e.voterIdNo,e.passportNo,e.passportExpiry"
 	+ ",q.qualification,q.majorStream,q.instituteName,h.hobbieId,h.hobbiesLevel,h.hobbies"
     + " from EmployeeEntity e join EducationEntity q on e.empid=q.employeeEntity.empid join HobbiesEntity h on e.empid=h.employeeEntity.empid")
 	List<Object> fetchall();
@@ -45,26 +39,12 @@ public interface EmployeeDetailsRepository extends JpaRepository<EmployeeEntity,
 			+ " from EmployeeEntity e join EducationEntity q on e.empid=q.employeeEntity.empid join HobbiesEntity h on e.empid=h.employeeEntity.empid where e.empid=?1")
 	List<Object> fetchById(int empid);
 
-   // public EmployeeEntity findById(int empid);
-
-// @Modifying
-// @Transactional
-// @Query("UPDATE EmployeeEntity e,EducationEntity q SET e.status= :status,q.qualification= :qualification where empid= :empid")
-// public int updateQuery(@Param("empid")int empid,@Param("status")String status,@Param("qualification")String qualification);
-
-//@Query("select e.fullName,q.qualification From EmployeeEntity e join EducationEntity q on e.empid=q.empid")
-//public ArrayList getAllEmployeeDetails();
-
-//public final static String employee_details="select e.fullName,q.qualification from EmployeeEntity e join EducationEntity q on e.empid=q.employeeEntity.empid";	
-//@Query(employee_details)
-//public int findByIdDetails(@Param("empid")int empid);
-
 	public EmployeeEntity findByStatus(String status);
 
 	public EmployeeEntity findByTempId(String tempId);
 
 	public Optional<EmployeeEntity> findById(int empid);
 
-	//public Optional<EmployeeEntity> findBy(int empid);
+	
 
 }

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "previous_employment_details")
 public class PreviousEmploymentEntity {
@@ -40,6 +42,7 @@ public class PreviousEmploymentEntity {
 	@Column(name = "pervious_insurance_no")
 	private String perviousInsuranceNo;
 	
+	@JsonBackReference("empid")			
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = EmployeeEntity.class)
 	@JoinColumn(name = "empid")
 	private EmployeeEntity employeeEntity;

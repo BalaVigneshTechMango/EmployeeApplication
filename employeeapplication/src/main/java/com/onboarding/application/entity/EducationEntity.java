@@ -6,12 +6,17 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.lang.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "qualification_details")
@@ -36,7 +41,8 @@ public class EducationEntity {
 	@Column(name = "percentage")
 	private String percentage;
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL,targetEntity = EmployeeEntity.class)
+	@JsonBackReference("empid")
+	@ManyToOne
 	@JoinColumn(name = "empid")
 	private EmployeeEntity employeeEntity;
 
