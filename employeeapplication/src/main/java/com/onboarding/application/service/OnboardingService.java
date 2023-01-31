@@ -24,18 +24,18 @@ public interface OnboardingService {
 	// JdbcTemplate
 
 	// SaveMethods
-	public int saveEmployee(EmployeeRequestPojo employeeRequestPojo);
+	public EmployeeRequestPojo saveEmployee(EmployeeRequestPojo employeeRequestPojo);
 
-	public int saveBank(EmployeeRequestPojo employeeRequestPojo,int a);
+	public int saveBank(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public void batchHobbies(EmployeeRequestPojo employeeRequestPojo);
+	public void batchHobbies(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public void batchSkill(EmployeeRequestPojo employeeRequestPojo);
+	public void batchSkill(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public void batchPerviousEmp(EmployeeRequestPojo employeeRequestPojo);
+	public void batchPerviousEmp(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public void batchFam(EmployeeRequestPojo employeeRequestPojo);
+	public void batchFam(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public void batchEducation(EmployeeRequestPojo employeeRequestPojo);
+	public void batchEducation(EmployeeRequestPojo employeeRequestPojo, int key);
 
 }

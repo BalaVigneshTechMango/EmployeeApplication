@@ -1,27 +1,17 @@
 package com.onboarding.application.controller;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.onboarding.application.dao.OnboardingDao;
 import com.onboarding.application.entity.EducationEntity;
 import com.onboarding.application.entity.EmployeeEntity;
-import com.onboarding.application.entity.HobbiesEntity;
 import com.onboarding.application.repository.EducationRepository;
 import com.onboarding.application.repository.EmployeeDetailsRepository;
 import com.onboarding.application.request.EmployeeRequestPojo;
@@ -42,24 +32,24 @@ public class OnboardingController {
 
 	@PostMapping("/batchUpdate")
 	public void batchUpdate(@RequestBody EmployeeRequestPojo employeeRequestPojo) {
-        
-		onboardingService.saveEmployee(employeeRequestPojo);
-		int a= employeeRequestPojo.getEmpid();
-		onboardingService.saveBank(employeeRequestPojo,a);
-		onboardingService.batchHobbies(employeeRequestPojo);
-		onboardingService.batchSkill(employeeRequestPojo);
-		onboardingService.batchPerviousEmp(employeeRequestPojo);
-		onboardingService.batchFam(employeeRequestPojo);
-		onboardingService.batchEducation(employeeRequestPojo);
+		EmployeeRequestPojo employeeForeign = onboardingService.saveEmployee(employeeRequestPojo);
+		int key = employeeForeign.getEmpid();
+		System.out.println(key);
+		onboardingService.saveBank(employeeRequestPojo, key);
+		onboardingService.batchHobbies(employeeRequestPojo, key);
+		onboardingService.batchSkill(employeeRequestPojo, key);
+		onboardingService.batchPerviousEmp(employeeRequestPojo, key);
+		onboardingService.batchFam(employeeRequestPojo, key);
+		onboardingService.batchEducation(employeeRequestPojo, key);
 
 	}
 
 	@PostMapping("/updateExm")
 	public void updateExample(@RequestBody EmployeeRequestPojo employeeRequestPojo) {
-		onboardingDao.update(employeeRequestPojo);
+//		onboardingDao.update(employeeRequestPojo);
 		EmployeeEntity employeeEntity = new EmployeeEntity();
-		employeeEntity.setHobbiesEntities(employeeRequestPojo.getHobbies());
-		onboardingDao.updateHobbies(employeeRequestPojo, employeeEntity);
+		// employeeEntity.setHobbiesEntities(employeeRequestPojo.getHobbies());
+		onboardingDao.updateHobbiess(employeeRequestPojo);
 
 	}
 

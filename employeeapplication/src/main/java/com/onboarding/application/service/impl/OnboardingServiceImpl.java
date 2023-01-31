@@ -123,44 +123,43 @@ public class OnboardingServiceImpl implements OnboardingService {
 
 	// Save methods
 	@Override
-	public void batchHobbies(EmployeeRequestPojo employeeRequestPojo) {
-		onboardingDao.batchHobbies(employeeRequestPojo);
+	public void batchHobbies(EmployeeRequestPojo employeeRequestPojo, int key) {
+		onboardingDao.batchHobbies(employeeRequestPojo, key);
 	}
 
 	@Override
-	public void batchSkill(EmployeeRequestPojo employeeRequestPojo) {
-		onboardingDao.batchSkill(employeeRequestPojo);
-
-	}
-
-	@Override
-	public void batchPerviousEmp(EmployeeRequestPojo employeeRequestPojo) {
-		onboardingDao.batchPerviousEmp(employeeRequestPojo);
+	public void batchSkill(EmployeeRequestPojo employeeRequestPojo, int key) {
+		onboardingDao.batchSkill(employeeRequestPojo, key);
 
 	}
 
 	@Override
-	public void batchFam(EmployeeRequestPojo employeeRequestPojo) {
-		onboardingDao.batchFam(employeeRequestPojo);
+	public void batchPerviousEmp(EmployeeRequestPojo employeeRequestPojo, int key) {
+		onboardingDao.batchPerviousEmp(employeeRequestPojo, key);
 
 	}
 
 	@Override
-	public void batchEducation(EmployeeRequestPojo employeeRequestPojo) {
-		onboardingDao.batchEducation(employeeRequestPojo);
+	public void batchFam(EmployeeRequestPojo employeeRequestPojo, int key) {
+		onboardingDao.batchFam(employeeRequestPojo, key);
 
 	}
 
 	@Override
-	public int saveEmployee(EmployeeRequestPojo employeeRequestPojo) {
-		 return onboardingDao.saveEmployee(employeeRequestPojo);
-         
+	public void batchEducation(EmployeeRequestPojo employeeRequestPojo, int key) {
+		onboardingDao.batchEducation(employeeRequestPojo, key);
+
 	}
 
 	@Override
-	public int saveBank(EmployeeRequestPojo employeeRequestPojo,int a) {
-		return onboardingDao.saveBank(employeeRequestPojo,a);
-		
+	public EmployeeRequestPojo saveEmployee(EmployeeRequestPojo employeeRequestPojo) {
+		return onboardingDao.saveEmployee(employeeRequestPojo);
+
+	}
+
+	@Override
+	public int saveBank(EmployeeRequestPojo employeeRequestPojo, int key) {
+		return onboardingDao.saveBank(employeeRequestPojo, key);
 
 	}
 

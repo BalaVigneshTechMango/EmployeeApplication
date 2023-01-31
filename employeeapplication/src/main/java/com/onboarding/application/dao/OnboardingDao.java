@@ -18,7 +18,6 @@ public interface OnboardingDao {
 	public List<Object> getById(EmployeeRequestPojo employeeRequestPojo);
 
 	// jdbcTemplate
-
 	int update(EmployeeRequestPojo employee);
 
 	int updateBank(EmployeeRequestPojo employeeRequestPojo);
@@ -30,18 +29,21 @@ public interface OnboardingDao {
 	List<EmployeeEntity> findAll();
 
 	// saveMethods
-	int saveEmployee(EmployeeRequestPojo employeeEntity);
+	EmployeeRequestPojo saveEmployee(EmployeeRequestPojo employeeEntity);
 
-	int saveBank(EmployeeRequestPojo employeeEntity,int a);
+	int saveBank(EmployeeRequestPojo employeeEntity, int key);
 
-	int[] batchHobbies(EmployeeRequestPojo employeeRequestPojo);
+	int[] batchHobbies(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public int[] batchSkill(EmployeeRequestPojo employeeRequestPojo);
+	public int[] batchSkill(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public int[] batchPerviousEmp(EmployeeRequestPojo employeeRequestPojo);
+	public int[] batchPerviousEmp(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public int[] batchFam(EmployeeRequestPojo employeeRequestPojo);
+	public int[] batchFam(EmployeeRequestPojo employeeRequestPojo, int key);
 
-	public int[] batchEducation(EmployeeRequestPojo employeeRequestPojo);
+	public int[] batchEducation(EmployeeRequestPojo employeeRequestPojo, int key);
+
+	// Update
+	int[] updateHobbiess(EmployeeRequestPojo employeeRequestPojo);
 
 }
